@@ -1,0 +1,38 @@
+import java.util.Scanner;
+public class MaxSumInMatrix {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the size of the matrix:");
+        int a=sc.nextInt();
+        int[][] matrix = new int[a][a];
+        System.out.println("Enter "+a*a+" elemnets");
+
+        for(int m=0;m<a;m++){
+            for(int n=0;n<a;n++){
+                matrix[m][n]=sc.nextInt();
+            }
+        }
+
+        int maxSum = findMaxSum(matrix);
+        System.out.println("Maximum sum of two numbers in the matrix: " + maxSum);
+    }
+
+    public static int findMaxSum(int[][] matrix) {
+        int maxSum = Integer.MIN_VALUE;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                for (int k = 0; k < matrix.length; k++) {
+                    for (int l = 0; l < matrix[k].length; l++) {
+                        if (i != k || j != l) {
+                            int sum = matrix[i][j] + matrix[k][l];
+                            maxSum = Math.max(maxSum, sum);
+                        }
+                    }
+                }
+            }
+        }
+
+        return maxSum;
+    }
+}
